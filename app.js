@@ -22,6 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//My custom middleware
+app.use(function(req, res, next) {
+  console.log('VISITORS IP:', req.ip);
+  next();
+})
+
 app.use('/', index);
 app.use('/users', users);
 
